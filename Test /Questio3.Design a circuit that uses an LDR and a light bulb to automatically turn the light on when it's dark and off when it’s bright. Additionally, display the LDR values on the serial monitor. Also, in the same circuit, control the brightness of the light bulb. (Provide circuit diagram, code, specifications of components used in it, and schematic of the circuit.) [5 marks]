@@ -1,0 +1,36 @@
+#Answer:
+
+-Specifications of Components:
+
+LDR (Light Dependent Resistor)
+10k ohm resistor
+NPN transistor (e.g., 2N2222)
+Light bulb
+Arduino Uno
+
+-Circuit Diagram:
+
+1.Connect one end of the LDR to 5V and the other end to an analog input pin (A0) and ground via a 10k ohm resistor.
+2.Connect the base of the transistor to a digital pin (e.g., pin 9) through a 1k ohm resistor.
+3.Connect the collector of the transistor to one end of the light bulb, and the other end of the light bulb to 12V.
+4.Connect the emitter of the transistor to the ground.
+
+#CODE:
+const int ldrPin = A0;
+const int lightPin = 9;
+int ldrValue = 0;
+
+void setup() {
+  pinMode(lightPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  ldrValue = analogRead(ldrPin);
+  Serial.println(ldrValue);
+  
+  int brightness = map(ldrValue, 0, 1023, 255, 0); // Assuming higher LDR values mean more light
+  analogWrite(lightPin, brightness);
+  
+  delay(500);
+}

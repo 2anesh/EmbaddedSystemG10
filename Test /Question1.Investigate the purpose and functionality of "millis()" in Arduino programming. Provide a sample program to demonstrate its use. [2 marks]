@@ -1,0 +1,17 @@
+#ASNWER
+#CODE:
+unsigned long previousMillis = 0;
+const long interval = 1000; // 1 second
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+    Serial.println("1 second has passed");
+  }
+}

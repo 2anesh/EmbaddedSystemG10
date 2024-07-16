@@ -1,0 +1,30 @@
+#Answer:
+
+Circuit Diagram:
+
+1.Connect four LEDs to digital pins 2, 3, 4, and 5 of the Arduino.
+2.Connect a 220-ohm resistor in series with each LED.
+3.Connect the other end of each resistor to the ground.
+
+#CODE:
+const int ledPins[] = {2, 3, 4, 5};
+
+void setup() {
+  for (int i = 0; i < 4; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
+}
+
+void loop() {
+  for (int number = 0; number <= 15; number++) {
+    displayBinary(number);
+    delay(1000); // wait for 1 second
+  }
+}
+
+void displayBinary(int number) {
+  for (int i = 0; i < 4; i++) {
+    int bitValue = (number >> i) & 0x01;
+    digitalWrite(ledPins[i], bitValue);
+  }
+}
